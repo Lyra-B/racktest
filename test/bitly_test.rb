@@ -7,7 +7,7 @@ class BitlyTest < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def app
-  	BitlyServer.new
+  	@app ||= BitlyServer.new
   end
 
   def test_homepage_works
@@ -17,11 +17,10 @@ class BitlyTest < Test::Unit::TestCase
 
   def test_a_short_url_maps_to_a_long_url
   	app.urls['xyz'] = "http://www.wegotcoders.com"
-
   	get '/xyz'
   	assert last_response.redirect?
   	follow_redirect!
-  	assert_equal "http://www.wegotcoders.com", last_response.url
+  	assert_equal "http://www.wegotcoders.com/", last_request.url
   end
 
   def test_a_missing_url_gives_404
@@ -35,7 +34,7 @@ class BitlyTest < Test::Unit::TestCase
   	get "/#{short_url}"
   	assert last_response.redirect?
   	follow_redirect!
-  	assert_equal "http://www.wegotcoders.com", last_response.url
+  	assert_equal "http://www.wegotcoders.com", last_request.url
   end
 
   def test_adding_a_url_from_a_client
@@ -46,6 +45,6 @@ class BitlyTest < Test::Unit::TestCase
   	get generated_url
   	assert last_response.redirect?
   	follow_redirect!
-  	assert_equal "http://www.wegotcoders.com", last_response.url
+  	assert_equal "http://www.wegotcoders.com", last_request.url
   end
 end
