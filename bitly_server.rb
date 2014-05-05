@@ -1,7 +1,7 @@
 class BitlyServer
 
 	def urls
-		{}
+		@urls ||= {}
 	end
 
 	def add_url(url)
