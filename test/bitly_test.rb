@@ -34,7 +34,7 @@ class BitlyTest < Test::Unit::TestCase
   	get "/#{short_url}"
   	assert last_response.redirect?
   	follow_redirect!
-  	assert_equal "http://www.wegotcoders.com", last_request.url
+  	assert_equal "http://www.wegotcoders.com/", last_request.url
   end
 
   def test_adding_a_url_from_a_client
@@ -45,6 +45,6 @@ class BitlyTest < Test::Unit::TestCase
   	get generated_url
   	assert last_response.redirect?
   	follow_redirect!
-  	assert_equal "http://www.wegotcoders.com", last_request.url
+  	assert_equal "http://www.wegotcoders.com/", last_request.url
   end
 end
