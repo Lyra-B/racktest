@@ -1,4 +1,4 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'rack/test'
 require 'pry'
 require_relative '../bitly_server'
