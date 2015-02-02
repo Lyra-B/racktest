@@ -6,7 +6,12 @@ class MyAmazingWebApp
 	}.freeze
 
 	def call(env)
-		[500, @@headers, ["TODO - make a webapp"]]
+		case env["PATH_INFO"]
+		when "/"
+		[200, @@headers, ["Ok"]]
+		else
+		[404, @@headers, ["Page not found!"]]
+		end
 	end
 
 end
