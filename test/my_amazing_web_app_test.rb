@@ -1,9 +1,9 @@
-require 'test/unit'
+require 'minitest/autorun'
 require 'rack/test'
 require 'pry'
 require_relative '../my_amazing_web_app'
 
-class MovieServerTest < Test::Unit::TestCase
+class MovieServerTest < MiniTest::Test
   include Rack::Test::Methods
 
   def app
