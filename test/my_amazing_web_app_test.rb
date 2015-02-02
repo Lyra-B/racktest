@@ -19,4 +19,9 @@ class MovieServerTest < MiniTest::Test
   	get '/nonesuch'
   	assert_equal 404, last_response.status
   end
+
+  def test_image
+    get '/images/picture.jpeg'
+    assert last_response.ok?
+  end
 end
