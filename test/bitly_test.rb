@@ -3,7 +3,7 @@ require 'rack/test'
 require 'pry'
 require_relative '../bitly_server'
 
-class BitlyTest < Test::Unit::TestCase
+class BitlyTest < MiniTest::Test
   include Rack::Test::Methods
 
   def app
